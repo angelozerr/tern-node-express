@@ -8,7 +8,14 @@
 
 You can see demo with CodeMirror (inside Web Browser) [demos/express.html](https://github.com/angelozerr/tern-express/blob/master/demos/express.html) :
 
+Here a screenshot with completion for expression object :
+ 
 ![CodeMirror & TernExpress](https://github.com/angelozerr/tern-express/wiki/images/TernExpressWithCodeMirror.png)
+
+
+Here a screenshot with completion for Response instance:
+
+![CodeMirror & TernExpress Response](https://github.com/angelozerr/tern-express/wiki/images/TernExpressResponseWithCodeMirror.png)
 
 ## Installation
 
