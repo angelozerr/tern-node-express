@@ -3,7 +3,7 @@ tern-express
 
 [![Build Status](https://secure.travis-ci.org/angelozerr/tern-express.png)](http://travis-ci.org/angelozerr/tern-express)
 
-[tern-express](https://github.com/angelozerr/tern-express)  is a plugin which adds support for [express web application framework for node](http://expressjs.com/) to the JavaSript code intelligence system Tern.
+[tern-express](https://github.com/angelozerr/tern-express)  is a plugin which adds support for [express web application framework for node](http://expressjs.com/) to the JavaSript code intelligence system [Tern](http://ternjs.net/).
 
 ## Demo
 
