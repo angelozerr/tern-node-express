@@ -19,18 +19,42 @@
     "!define": {
       "!node": {
         express: {
-          "!type": "fn() -> application",
+          "!type": "fn() -> Application",
           "!doc": "Create an express application."
         }
       },
-      application: {
+      Application: {
         get: {
-          "!type": "fn(name: string) -> ?", 
+          "!type": "fn(name: string, function?: fn(req: +Request, req: +Response))",
+          "!url": "http://expressjs.com/4x/api.html#app.get",
           "!doc": "Get setting name value."
         },
         set: {
-          "!type": "fn(name: string, value: ?) -> !this", 
+          "!type": "fn(name: string, value: ?) -> !this",
+          "!url": "http://expressjs.com/4x/api.html#app.set",
           "!doc": "Assigns setting name to value."
+        }
+      },
+      Request: {
+        "!type": "fn()",
+        prototype : {
+          "!proto" : "http.IncomingMessage.prototype",
+          param: {
+            "!type": "fn(name: string, defaultValue?: ?)",
+            "!url": "http://expressjs.com/4x/api.html#req.param",
+            "!doc": "Return the value of param name when present."
+          }
+        }
+      },
+      Response: {
+        "!type": "fn()",
+        prototype : {
+          "!proto" : "http.ServerResponse.prototype",
+          send: {
+            "!type": "fn(body?: ?)",
+            "!url": "http://expressjs.com/4x/api.html#res.send",
+            "!doc": "Send a response."
+          }
         }
       }
     }
