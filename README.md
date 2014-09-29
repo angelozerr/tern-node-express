@@ -7,9 +7,9 @@ http://expressjs.com/
 
 ## Demo
 
-You can see demo :
+You can see demo with CodeMirror (inside Web Browser) `demos/express.html`:
 
-TODO
+![CodeMirror & TernExpress](https://github.com/angelozerr/tern-express/wiki/images/TernExpressWithCodeMirror.png)
 
 
 ## Structure
