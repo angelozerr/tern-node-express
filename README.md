@@ -7,7 +7,7 @@ tern-express
 
 ## Demo
 
-You can see demo with CodeMirror (inside Web Browser) `demos/express.html`:
+You can see demo with CodeMirror (inside Web Browser) [demos/express.html`](https://github.com/angelozerr/tern-express/blob/master/demos/express.html) :
 
 ![CodeMirror & TernExpress](https://github.com/angelozerr/tern-express/wiki/images/TernExpressWithCodeMirror.png)
 
