@@ -20,12 +20,16 @@
       "!node": {
         express: {
           "!type": "fn() -> Application",
-          "!doc": "Create an express application."
+          "!url": "http://expressjs.com/4x/api.html#express",
+          "!doc": "Create an express application.",
+          Router: {
+            "!type": "fn(options?: +RouterOptions) -> +Router"
+          }
         }
       },
       Application: {
         get: {
-          "!type": "fn(name: string, function?: fn(req: +Request, req: +Response))",
+          "!type": "fn(name: string, callback?: fn(req: +Request, req: +Response))",
           "!url": "http://expressjs.com/4x/api.html#app.get",
           "!doc": "Get setting name value."
         },
@@ -55,6 +59,32 @@
             "!url": "http://expressjs.com/4x/api.html#res.send",
             "!doc": "Send a response."
           }
+        }
+      },
+      Router: {
+        "!type": "fn()",
+        prototype : {
+          use: {
+            "!type": "fn(path?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
+            "!url": "http://expressjs.com/4x/api.html#router.use",
+            "!doc" : "Use the given middleware function, with optional mount path, defaulting to "/". Middleware is like a plumbing pipe, requests start at the first middleware you define and work their way \"down\" the middleware stack processing for each path they match."
+          },
+          param: {
+            "!type": "fn(name?: string, callback: fn(req: +Request, req: +Response, next: fn(), id: ?)) -> !this",
+            "!url": "http://expressjs.com/4x/api.html#router.param",
+            "!doc" : "Map logic to route parameters. For example, when :user is present in a route path you may map user loading logic to automatically provide req.user to the route, or perform validations on the parameter input."
+          }
+        }
+      },
+      RouterOptions: {
+        caseSensitive : {
+          "!type": "bool"
+        },
+        strict : {
+          "!type": "string"
+        },
+        mergeParams : {
+          "!type": "bool"
         }
       }
     }
