@@ -7,6 +7,33 @@
 })(function(infer, tern) {
   "use strict";
 
+  infer.registerFunction("expressRouterUse", function(_self, _args, argNodes) {
+    // router.use can have 2 signatures : 
+    // - router.use(string, fn(req, resp, next))
+    // - router.use(fn(req, resp, next))    
+    // tern can support only one signature with JSON Type Definition. In your case
+    // we support the first signature (see Router.prototype.use)    
+    if (argNodes && argNodes.length && argNodes[0].type == "FunctionExpression") {
+      // here we support the second signature.
+      var fn = _args[0], params = argNodes[0].params, cx = infer.cx(), paths = cx.paths;
+      var fnArgs = [];
+      for (var i = 0; i < params.length; i++) {
+        switch(i) {
+        case 0: // Request
+          fnArgs.push(new infer.Obj(paths["Request.prototype"]));
+          break;
+        case 1: // Response
+          fnArgs.push(new infer.Obj(paths["Response.prototype"]));
+          break;
+        case 2: // next
+          fnArgs.push(new infer.Fn(null, infer.ANull, [], [], infer.ANull));
+          break;
+        }
+      }
+      fn.propagate(new infer.IsCallee(infer.cx().topScope, fnArgs, null, infer.ANull))
+    }
+  });
+  
   tern.registerPlugin("express", function(server, options) {
 
     return {
@@ -66,6 +93,7 @@
         prototype : {
           use: {
             "!type": "fn(path?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
+            "!effects": ["custom expressRouterUse"],
             "!url": "http://expressjs.com/4x/api.html#router.use",
             "!doc" : "Use the given middleware function, with optional mount path, defaulting to "/". Middleware is like a plumbing pipe, requests start at the first middleware you define and work their way \"down\" the middleware stack processing for each path they match."
           },

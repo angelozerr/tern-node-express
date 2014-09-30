@@ -72,6 +72,7 @@
         infer.Fn.call(this.base, name, infer.ANull, args, names, retType);
       else
         fn = new infer.Fn(name, infer.ANull, args, names, retType);
+      console.log(name)
       if (computeRet) fn.computeRet = computeRet;
       if (computeRetStart != null) fn.computeRetSource = this.spec.slice(computeRetStart, this.pos);
       return fn;
