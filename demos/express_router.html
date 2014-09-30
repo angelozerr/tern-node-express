@@ -71,14 +71,14 @@ var router = express.Router();
 // simple logger for this router's requests
 // all requests to this router will first hit this middleware
 router.use(function(req, res, next) {
-// HERE completion req. doesn't work because it manages only router.use(string, fn)
+  req. // here Ctrl+Space opens Request methods  
   console.log('%s %s %s', req.method, req.url, req.path);
   next();
 });
 
 // this will only be invoked if the path ends in /bar
 router.use('/bar', function(req, res, next) {
-// HERE completion req. works
+  req. // here Ctrl+Space opens Request methods
   // ... maybe some additional /bar logging ...
   next();
 });
