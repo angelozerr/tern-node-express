@@ -7,7 +7,7 @@
 })(function(infer, tern) {
   "use strict";
 
-  infer.registerFunction("expressRouterUse", function(_self, _args, argNodes) {
+  infer.registerFunction("expressUse", function(_self, _args, argNodes) {
     // router.use can have 2 signatures : 
     // - router.use(string, fn(req, resp, next))
     // - router.use(fn(req, resp, next))    
@@ -64,6 +64,43 @@
           "!type": "fn(name: string, value: ?) -> !this",
           "!url": "http://expressjs.com/4x/api.html#app.set",
           "!doc": "Assigns setting name to value."
+        },
+        enable: {
+          "!type": "fn(name: string) -> !this",
+          "!url": "http://expressjs.com/4x/api.html#app.enable",
+          "!doc": "Set setting name to true."
+        },
+        enabled: {
+          "!type": "fn(name: string) -> bool",
+          "!url": "http://expressjs.com/4x/api.html#app.enabled",
+          "!doc": "Check if setting name is enabled."
+        },
+        disable: {
+          "!type": "fn(name: string) -> !this",
+          "!url": "http://expressjs.com/4x/api.html#app.disable",
+          "!doc": "Set setting name to false."
+        },
+        disabled: {
+          "!type": "fn(name: string) -> bool",
+          "!url": "http://expressjs.com/4x/api.html#app.disabled",
+          "!doc": "Check if setting name is disabled."
+        },
+        use: {
+          "!type": "fn(path?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
+          "!effects": ["custom expressUse"],
+          "!url": "http://expressjs.com/4x/api.html#app.use",
+          "!doc" : "Mount the middleware function(s) at the path. If path is not specified, it defaults to \"/\". Mounting a middleware at a path will cause the middleware function to be executed whenever the base of the requested path matches the path."
+        },
+        engine: {
+          "!type": "fn(ext: string, callback: fn()) -> !this",
+          "!url": "http://expressjs.com/4x/api.html#app.engine",
+          "!doc": "Register the given template engine callback as ext. By default, Express will require() the engine based on the file extension. For example if you try to render a \"foo.jade\" file Express will invoke the following internally, and cache the require() on subsequent calls to increase performance."
+        },
+        param: {
+          "!type": "fn(name?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
+          "!effects": ["custom expressUse"],
+          "!url": "http://expressjs.com/4x/api.html#app.param",
+          "!doc" : "Map logic to route parameters. For example, when :user is present in a route path, you may map user loading logic to automatically provide req.user to the route, or perform validations on the parameter input."
         }
       },
       Request: {
@@ -93,7 +130,7 @@
         prototype : {
           use: {
             "!type": "fn(path?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
-            "!effects": ["custom expressRouterUse"],
+            "!effects": ["custom expressUse"],
             "!url": "http://expressjs.com/4x/api.html#router.use",
             "!doc" : "Use the given middleware function, with optional mount path, defaulting to "/". Middleware is like a plumbing pipe, requests start at the first middleware you define and work their way \"down\" the middleware stack processing for each path they match."
           },
