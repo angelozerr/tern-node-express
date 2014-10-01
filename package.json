@@ -2,7 +2,7 @@
   "name": "tern-node-express",
   "license": "MIT",
   "version": "0.1.0",
-  "main": "express.js",
+  "main": "node-express.js",
   "author": "Angelo ZERR <angelo.zerr@gmail.com>",
   "description": "A Tern plugin adding support for express web application framework for node.",
   "repository": {
