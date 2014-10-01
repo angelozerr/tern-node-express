@@ -101,6 +101,22 @@
           "!effects": ["custom expressUse"],
           "!url": "http://expressjs.com/4x/api.html#app.param",
           "!doc" : "Map logic to route parameters. For example, when :user is present in a route path, you may map user loading logic to automatically provide req.user to the route, or perform validations on the parameter input."
+        },
+        all: {
+          "!type": "fn(name?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
+          "!effects": ["custom expressUse"],
+          "!url": "http://expressjs.com/4x/api.html#app.all",
+          "!doc" : "This method functions just like the app.VERB() methods, however it matches all HTTP verbs. This method is extremely useful for mapping \"global\" logic for specific path prefixes or arbitrary matches. For example if you placed the following route at the top of all other route definitions, it would require that all routes from that point on would require authentication, and automatically load a user. Keep in mind that these callbacks do not have to act as end points, loadUser can perform a task, then next() to continue matching subsequent routes."
+        },
+        route: {
+          "!type": "fn(path: string) -> +Route",
+          "!url": "http://expressjs.com/4x/api.html#app.route",
+          "!doc": "Returns an instance of a single route, which can then be used to handle HTTP verbs with optional middleware. Using app.route() is a recommended approach for avoiding duplicate route names (and thus typo errors)."
+        },
+        locals: {
+          "!type": "+Object",
+          "!url": "http://expressjs.com/4x/api.html#app.locals",
+          "!doc": "Application local variables are provided to all templates rendered within the application. This is useful for providing helper functions to templates, as well as app-level data."
         }
       },
       Request: {
@@ -123,6 +139,17 @@
             "!url": "http://expressjs.com/4x/api.html#res.send",
             "!doc": "Send a response."
           }
+        }
+      },
+      Route: {
+        "!type": "fn()",
+        prototype : {
+          all: {
+            "!type": "fn(name?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
+            "!effects": ["custom expressUse"],
+            "!url": "http://expressjs.com/4x/api.html#app.all",
+            "!doc" : "This method functions just like the app.VERB() methods, however it matches all HTTP verbs. This method is extremely useful for mapping \"global\" logic for specific path prefixes or arbitrary matches. For example if you placed the following route at the top of all other route definitions, it would require that all routes from that point on would require authentication, and automatically load a user. Keep in mind that these callbacks do not have to act as end points, loadUser can perform a task, then next() to continue matching subsequent routes."
+          },
         }
       },
       Router: {
