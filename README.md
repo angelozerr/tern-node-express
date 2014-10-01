@@ -1,32 +1,32 @@
-# tern-express
+# tern-node-express
 
-[![Build Status](https://secure.travis-ci.org/angelozerr/tern-express.png)](http://travis-ci.org/angelozerr/tern-express)
+[![Build Status](https://secure.travis-ci.org/angelozerr/tern-node-express.png)](http://travis-ci.org/angelozerr/tern-node-express)
 
-[tern-express](https://github.com/angelozerr/tern-express)  is a plugin which adds support for [express web application framework for node](http://expressjs.com/) to the JavaSript code intelligence system [Tern](http://ternjs.net/).
+[tern-node-express](https://github.com/angelozerr/tern-node-express)  is a plugin which adds support for [express web application framework for node](http://expressjs.com/) to the JavaSript code intelligence system [Tern](http://ternjs.net/).
 
 ## Demo
 
-You can see demo with CodeMirror (inside Web Browser) [demos/express.html](https://github.com/angelozerr/tern-express/blob/master/demos/express.html) :
+You can see demo with CodeMirror (inside Web Browser) [demos/express.html](https://github.com/angelozerr/tern-node-express/blob/master/demos/express.html) :
 
 Here a screenshot with completion for expression object :
  
-![CodeMirror & TernExpress](https://github.com/angelozerr/tern-express/wiki/images/TernExpressWithCodeMirror.png)
+![CodeMirror & TernExpress](https://github.com/angelozerr/tern-node-express/wiki/images/TernExpressWithCodeMirror.png)
 
 
 Here a screenshot with completion for Response instance:
 
-![CodeMirror & TernExpress Response](https://github.com/angelozerr/tern-express/wiki/images/TernExpressResponseWithCodeMirror.png)
+![CodeMirror & TernExpress Response](https://github.com/angelozerr/tern-node-express/wiki/images/TernExpressResponseWithCodeMirror.png)
 
 ## Installation
 
-tern-express works with the NodeJS [Tern Server][tern-server], and within a browser.
+tern-node-express works with the NodeJS [Tern Server][tern-server], and within a browser.
 
-The easiest way to install tern-express is to use a recent version of
+The easiest way to install tern-node-express is to use a recent version of
 [npm][npm]. In the directory where you installed the [tern package][tern-npm],
 simply run
 
 ```
-$ npm install tern-express
+$ npm install tern-node-express
 ```
 
 ## Configuration
@@ -35,7 +35,7 @@ $ npm install tern-express
 
 ### With Node.js
 
-In order for Tern to load the tern-express plugin once it is installed, you must
+In order for Tern to load the tern-node-express plugin once it is installed, you must
 include `express` in the `plugins` section of your [Tern configuration
 file][tern-config] and `node`.
 
@@ -52,7 +52,7 @@ Here is a minimal example `.tern-project` configuration file:
 
 ### With WebBrowser (CodeMirror)
 
-See [demos/express.html](https://github.com/angelozerr/tern-express/blob/master/demos/express.html)
+See [demos/express.html](https://github.com/angelozerr/tern-node-express/blob/master/demos/express.html)
 
 ## Structure
 
