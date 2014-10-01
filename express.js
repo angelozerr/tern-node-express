@@ -183,6 +183,11 @@
           "!type": "string",
           "!url": "http://expressjs.com/4x/api.html#app.mountpath",
           "!doc": "This property refers to the path pattern(s) on which a sub app was mounted."
+        },
+        on: {
+          "!type": "fn(name: string, callback: fn(parent: Application))",
+          "!url": "http://expressjs.com/4x/api.html#app.onmount",
+          "!doc" : "The mount event is fired on a sub app, when it is mounted on a parent app. The parent app is passed to the callback function."
         }
       },
       Request: {
