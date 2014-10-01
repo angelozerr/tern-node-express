@@ -36,7 +36,7 @@ $ npm install tern-node-express
 ### With Node.js
 
 In order for Tern to load the tern-node-express plugin once it is installed, you must
-include `express` in the `plugins` section of your [Tern configuration
+include `node-express` in the `plugins` section of your [Tern configuration
 file][tern-config] and `node`.
 
 Here is a minimal example `.tern-project` configuration file:
@@ -45,7 +45,7 @@ Here is a minimal example `.tern-project` configuration file:
 {
   "plugins": {
     "node": {},
-    "express": {}
+    "node-express": {}
   }
 }
 ```
