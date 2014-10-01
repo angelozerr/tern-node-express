@@ -58,5 +58,5 @@ See [demos/express.html](https://github.com/angelozerr/tern-node-express/blob/ma
 
 The basic structure of the project is given in the following way:
 
-* `express.js` the tern plugin.
+* `node-express.js` the tern plugin.
 * `demos/` demos with express tern plugin which use CodeMirror.
