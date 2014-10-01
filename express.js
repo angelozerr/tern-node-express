@@ -7,6 +7,28 @@
 })(function(infer, tern) {
   "use strict";
 
+  infer.registerFunction("express_render", function(_self, _args, argNodes) {
+    if (argNodes && argNodes.length && argNodes.length== 2) {
+      var arg = _args[1], argNode = argNodes[1], fn = getFunctionType(arg, argNode);
+      if (fn) {
+        // here we support the second signature.
+        var params = fn.argNames, cx = infer.cx(), paths = cx.paths;
+        var fnArgs = [];
+        for (var j = 0; j < params.length; j++) {
+          switch(j) {
+          case 0: // Error
+            fnArgs.push(new infer.Obj(paths["Error.prototype"]));
+            break;
+          case 1: // String
+            fnArgs.push(new infer.Obj(paths["String.prototype"]));
+            break;
+          }
+        }
+        fn.propagate(new infer.IsCallee(infer.cx().topScope, fnArgs, null, infer.ANull))          
+      }
+    }
+  });
+  
   infer.registerFunction("express_callback", function(_self, _args, argNodes) {
     // router.use can have 2 signatures : 
     // - router.use(string, fn(req, resp, next))
@@ -140,6 +162,27 @@
           "!type": "+Object",
           "!url": "http://expressjs.com/4x/api.html#app.locals",
           "!doc": "Application local variables are provided to all templates rendered within the application. This is useful for providing helper functions to templates, as well as app-level data."
+        },
+        render: {
+          "!type": "fn(view: string, options?: string, callback: fn(err: +Error, html: string)) -> !this",
+          "!effects": ["custom express_render"],
+          "!url": "http://expressjs.com/4x/api.html#app.render",
+          "!doc" : "Render a view with a callback responding with the rendered string. This is the app-level variant of res.render(), and otherwise behaves the same way."
+        },
+        listen: {
+          "!type": "fn(port: number, hostname?: string, backlog?: number, callback?: fn())",
+          "!url": "http://expressjs.com/4x/api.html#app.listen",
+          "!doc": "Bind and listen for connections on the given host and port. This method is identical to node's http.Server#listen()."
+        },
+        path: {
+          "!type": "fn() -> string",
+          "!url": "http://expressjs.com/4x/api.html#app.path",
+          "!doc": "Returns the canonical path of the app."
+        },
+        mountpath: {
+          "!type": "string",
+          "!url": "http://expressjs.com/4x/api.html#app.mountpath",
+          "!doc": "This property refers to the path pattern(s) on which a sub app was mounted."
         }
       },
       Request: {
