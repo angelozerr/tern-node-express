@@ -66,7 +66,7 @@
     if (argNode.type =="Identifier" && arg.getFunctionType) return arg.getFunctionType();
   }
   
-  tern.registerPlugin("express", function(server, options) {
+  tern.registerPlugin("node-express", function(server, options) {
 
     return {
       defs: defs
@@ -74,7 +74,7 @@
   });
 
   var defs = {
-    "!name": "express",
+    "!name": "node-express",
     "!define": {
       "!node": {
         express: {
