@@ -7,32 +7,42 @@
 })(function(infer, tern) {
   "use strict";
 
-  infer.registerFunction("expressUse", function(_self, _args, argNodes) {
+  infer.registerFunction("express_callback", function(_self, _args, argNodes) {
     // router.use can have 2 signatures : 
     // - router.use(string, fn(req, resp, next))
     // - router.use(fn(req, resp, next))    
     // tern can support only one signature with JSON Type Definition. In your case
-    // we support the first signature (see Router.prototype.use)    
-    if (argNodes && argNodes.length && argNodes[0].type == "FunctionExpression") {
-      // here we support the second signature.
-      var fn = _args[0], params = argNodes[0].params, cx = infer.cx(), paths = cx.paths;
-      var fnArgs = [];
-      for (var i = 0; i < params.length; i++) {
-        switch(i) {
-        case 0: // Request
-          fnArgs.push(new infer.Obj(paths["Request.prototype"]));
-          break;
-        case 1: // Response
-          fnArgs.push(new infer.Obj(paths["Response.prototype"]));
-          break;
-        case 2: // next
-          fnArgs.push(new infer.Fn(null, infer.ANull, [], [], infer.ANull));
-          break;
+    // we support the first signature (see Router.prototype.use)
+    if (argNodes && argNodes.length) {
+      for (var i = 0; i < argNodes.length; i++) {
+        var arg = _args[i], argNode = argNodes[i], fn = getFunctionType(arg, argNode);
+        if (fn) {
+          // here we support the second signature.
+          var params = fn.argNames, cx = infer.cx(), paths = cx.paths;
+          var fnArgs = [];
+          for (var j = 0; j < params.length; j++) {
+            switch(j) {
+            case 0: // Request
+              fnArgs.push(new infer.Obj(paths["Request.prototype"]));
+              break;
+            case 1: // Response
+              fnArgs.push(new infer.Obj(paths["Response.prototype"]));
+              break;
+            case 2: // next
+              fnArgs.push(new infer.Fn(null, infer.ANull, [], [], infer.ANull));
+              break;
+            }
+          }
+          fn.propagate(new infer.IsCallee(infer.cx().topScope, fnArgs, null, infer.ANull))          
         }
-      }
-      fn.propagate(new infer.IsCallee(infer.cx().topScope, fnArgs, null, infer.ANull))
+      }      
     }
   });
+  
+  function getFunctionType(arg, argNode) {
+    if (argNode.type =="FunctionExpression") return arg.getFunctionType();
+    if (argNode.type =="Identifier" && arg.getFunctionType) return arg.getFunctionType();
+  }
   
   tern.registerPlugin("express", function(server, options) {
 
@@ -56,9 +66,22 @@
       },
       Application: {
         get: {
-          "!type": "fn(name: string, callback?: fn(req: +Request, req: +Response))",
-          "!url": "http://expressjs.com/4x/api.html#app.get",
-          "!doc": "Get setting name value."
+          "!type": "fn(path: string, callback: [fn(req: +Request, req: +Response)]) -> !this",
+          "!effects": ["custom express_callback"],
+          "!url": "http://expressjs.com/4x/api.html#app.VERB",
+          "!doc": "The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs (such as app.get()). "
+        },
+        post: {
+          "!type": "fn(path: string, callback: [fn(req: +Request, req: +Response)]) -> !this",
+          "!effects": ["custom express_callback"],
+          "!url": "http://expressjs.com/4x/api.html#app.VERB",
+          "!doc": "The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs (such as app.post()). "
+        },
+        put: {
+          "!type": "fn(path: string, callback: [fn(req: +Request, req: +Response)]) -> !this",
+          "!effects": ["custom express_callback"],
+          "!url": "http://expressjs.com/4x/api.html#app.VERB",
+          "!doc": "The app.VERB() methods provide the routing functionality in Express, where VERB is one of the HTTP verbs (such as app.put()). "
         },
         set: {
           "!type": "fn(name: string, value: ?) -> !this",
@@ -87,7 +110,7 @@
         },
         use: {
           "!type": "fn(path?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
-          "!effects": ["custom expressUse"],
+          "!effects": ["custom express_callback"],
           "!url": "http://expressjs.com/4x/api.html#app.use",
           "!doc" : "Mount the middleware function(s) at the path. If path is not specified, it defaults to \"/\". Mounting a middleware at a path will cause the middleware function to be executed whenever the base of the requested path matches the path."
         },
@@ -98,13 +121,13 @@
         },
         param: {
           "!type": "fn(name?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
-          "!effects": ["custom expressUse"],
+          "!effects": ["custom express_callback"],
           "!url": "http://expressjs.com/4x/api.html#app.param",
           "!doc" : "Map logic to route parameters. For example, when :user is present in a route path, you may map user loading logic to automatically provide req.user to the route, or perform validations on the parameter input."
         },
         all: {
-          "!type": "fn(name?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
-          "!effects": ["custom expressUse"],
+          "!type": "fn(path: string, callback: [fn(req: +Request, req: +Response)]) -> !this",
+          "!effects": ["custom express_callback"],
           "!url": "http://expressjs.com/4x/api.html#app.all",
           "!doc" : "This method functions just like the app.VERB() methods, however it matches all HTTP verbs. This method is extremely useful for mapping \"global\" logic for specific path prefixes or arbitrary matches. For example if you placed the following route at the top of all other route definitions, it would require that all routes from that point on would require authentication, and automatically load a user. Keep in mind that these callbacks do not have to act as end points, loadUser can perform a task, then next() to continue matching subsequent routes."
         },
@@ -146,7 +169,7 @@
         prototype : {
           all: {
             "!type": "fn(name?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
-            "!effects": ["custom expressUse"],
+            "!effects": ["custom express_callback"],
             "!url": "http://expressjs.com/4x/api.html#app.all",
             "!doc" : "This method functions just like the app.VERB() methods, however it matches all HTTP verbs. This method is extremely useful for mapping \"global\" logic for specific path prefixes or arbitrary matches. For example if you placed the following route at the top of all other route definitions, it would require that all routes from that point on would require authentication, and automatically load a user. Keep in mind that these callbacks do not have to act as end points, loadUser can perform a task, then next() to continue matching subsequent routes."
           },
@@ -157,7 +180,7 @@
         prototype : {
           use: {
             "!type": "fn(path?: string, callback: fn(req: +Request, req: +Response, next: fn())) -> !this",
-            "!effects": ["custom expressUse"],
+            "!effects": ["custom express_callback"],
             "!url": "http://expressjs.com/4x/api.html#router.use",
             "!doc" : "Use the given middleware function, with optional mount path, defaulting to "/". Middleware is like a plumbing pipe, requests start at the first middleware you define and work their way \"down\" the middleware stack processing for each path they match."
           },
