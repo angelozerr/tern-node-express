@@ -208,6 +208,111 @@
             "!type": "fn(name: string, defaultValue?: ?)",
             "!url": "http://expressjs.com/4x/api.html#req.param",
             "!doc": "Return the value of param name when present."
+          },
+          route: {
+              "!type": "+Route",
+              "!url": "http://expressjs.com/4x/api.html#req.route",
+              "!doc": "The currently matched Route."        	    
+          },
+          cookies: {
+        	  "!type": "+Object",
+              "!url": "http://expressjs.com/4x/api.html#req.cookies",
+              "!doc": "When the cookieParser() middleware is used, this object defaults to {}. Otherwise, it contains the cookies sent by the user-agent."        	  
+          },
+          signedCookies: {
+              "!type": "+Object",
+              "!url": "http://expressjs.com/4x/api.html#req.signedCookies",
+              "!doc": "When the cookieParser(secret) middleware is used, this object defaults to {}. Otherwise, it contains the signed cookies sent by the user-agent, unsigned and ready for use. Signed cookies reside in a different object to show developer intent; otherwise, a malicious attack could be placed on req.cookie values (which are easy to spoof). Note that signing a cookie does not make it \"hidden\" or encrypted; this simply prevents tampering (because the secret used to sign is private)."        	  
+          },
+          get: {
+              "!type": "fn(field: string) -> string",
+              "!url": "http://expressjs.com/4x/api.html#req.route",
+              "!doc": "Get the case-insensitive request header field. The Referrer and Referer fields are interchangeable. Aliased as req.header(field)."         	  
+          },
+          accepts: {
+              "!type": "fn(type: string) -> string",
+              "!url": "http://expressjs.com/4x/api.html#req.accepts",
+              "!doc": "Check if the given types are acceptable, returning the best match when true, or else undefined (in which case you should respond with 406 \"Not Acceptable\"). The type value may be a single mime type string (such as \"application/json\"), the extension name such as \"json\", a comma-delimited list, or an array. When a list or array is given, the best match (if any) is returned."         	  
+          },
+          acceptsCharsets: {
+              "!type": "fn(lang: string) -> bool",
+              "!url": "http://expressjs.com/4x/api.html#req.acceptsCharsets",
+              "!doc": "Check if the given charset are acceptable."         	        	  
+          },
+          acceptsLanguages: {
+              "!type": "fn(encoding: string) -> bool",
+              "!url": "http://expressjs.com/4x/api.html#req.acceptsLanguages",
+              "!doc": "Check if the given lang are acceptable."         	        	      
+          },
+          acceptsEncodings: {
+          	  "!type": "fn(type: string) -> bool",
+              "!url": "http://expressjs.com/4x/api.html#req.acceptsLanguages",
+              "!doc": "Check if the given encoding are acceptable."         	        	          	  
+          },
+          is: {
+              "!type": "fn(type: string) -> string",
+              "!url": "http://expressjs.com/4x/api.html#req.is",
+              "!doc": "Check if the incoming request contains the \"Content-Type\" header field, and if it matches the give mime type."         	    
+          },
+          ip: {
+              "!type": "fn() -> string",
+              "!url": "http://expressjs.com/4x/api.html#req.ip",
+              "!doc": "Return the remote address (or, if \"trust proxy\" is enabled, the upstream address)."         	          	  
+          },
+          ips: {
+              "!type": "fn() -> [string]",
+              "!url": "http://expressjs.com/4x/api.html#req.ips",
+              "!doc": "When \"trust proxy\" is true, parse the \"X-Forwarded-For\" ip address list and return an array. Otherwise, an empty array is returned."         	          	          	  
+          },
+          path: {
+              "!type": "fn() -> string",
+              "!url": "http://expressjs.com/4x/api.html#req.path",
+              "!doc": "Returns the request URL pathname."
+          },
+          hostname: {
+              "!type": "fn() -> string",
+              "!url": "http://expressjs.com/4x/api.html#req.hostname",
+              "!doc": "Returns the hostname from the \"Host\" header field."       	  
+          },
+          fresh: {
+              "!type": "fn() -> bool",
+              "!url": "http://expressjs.com/4x/api.html#req.fresh",
+              "!doc": "Check if the request is \"fresh\" (i.e. whether the Last-Modified and/or the ETag still match)."       	          	  
+          },
+          stale: {
+              "!type": "fn() -> bool",
+              "!url": "http://expressjs.com/4x/api.html#req.stale",
+              "!doc": "Check if the request is \"stale\" (i.e. the Last-Modified and/or ETag headers do not match)."       	          	          	  
+          },
+          xhr: {
+              "!type": "fn() -> bool",
+              "!url": "http://expressjs.com/4x/api.html#req.xhr",
+              "!doc": "Check if the request was issued with the \"X-Requested-With\" header field set to \"XMLHttpRequest\" (jQuery etc)."       	          	          	         	  
+          },
+          protocol: {
+              "!type": "fn() -> string",
+              "!url": "http://expressjs.com/4x/api.html#req.protocol",
+              "!doc": "Return the protocol string \"http\" or \"https\" when requested with TLS. If the \"trust proxy\" setting is enabled, the \"X-Forwarded-Proto\" header field will be trusted. If you're running behind a reverse proxy that supplies https for you, this may be enabled."       	      	  
+          },
+          secure: {
+              "!type": "fn() -> bool",
+              "!url": "http://expressjs.com/4x/api.html#req.secure",
+              "!doc": "Check if a TLS connection is established."       	          	          	         	         	  
+          },
+          subdomains: {
+              "!type": "fn() -> [string]",
+              "!url": "http://expressjs.com/4x/api.html#req.subdomains",
+              "!doc": "Return subdomains as an array."         	          	          	          	  
+          },
+          originalUrl: {
+              "!type": "fn() -> string",
+              "!url": "http://expressjs.com/4x/api.html#req.originalUrl",
+              "!doc": "This property is much like req.url; however, it retains the original request url, allowing you to rewrite req.url freely for internal routing purposes. For example, the \"mounting\" feature of app.use()) will rewrite req.url to strip the mount point."       	      	        	  
+          },
+          baseUrl: {
+              "!type": "fn() -> string",
+              "!url": "http://expressjs.com/4x/api.html#req.baseUrl",
+              "!doc": "This property refers to the URL path, on which a router instance was mounted.Even if a path pattern or a set of path patterns were used to load the router, the matched string is returned as the baseUrl, instead of the pattern(s)."       	      	        	        	  
           }
         }
       },
