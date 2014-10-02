@@ -305,12 +305,12 @@
               "!doc": "Return subdomains as an array."         	          	          	          	  
           },
           originalUrl: {
-              "!type": "fn() -> string",
+              "!type": "string",
               "!url": "http://expressjs.com/4x/api.html#req.originalUrl",
               "!doc": "This property is much like req.url; however, it retains the original request url, allowing you to rewrite req.url freely for internal routing purposes. For example, the \"mounting\" feature of app.use()) will rewrite req.url to strip the mount point."       	      	        	  
           },
           baseUrl: {
-              "!type": "fn() -> string",
+              "!type": "string",
               "!url": "http://expressjs.com/4x/api.html#req.baseUrl",
               "!doc": "This property refers to the URL path, on which a router instance was mounted.Even if a path pattern or a set of path patterns were used to load the router, the matched string is returned as the baseUrl, instead of the pattern(s)."       	      	        	        	  
           }
@@ -320,11 +320,27 @@
         "!type": "fn()",
         prototype : {
           "!proto" : "http.ServerResponse.prototype",
+          status: {
+              "!type": "fn(statusCode: number)",
+              "!url": "http://expressjs.com/4x/api.html#res.status",
+              "!doc": "Chainable alias of node's res.statusCode. Use this method to set the HTTP status for the response."      	  
+          },         
+          set: {
+              "!type": "fn(field: string, value: string)",
+              "!url": "http://expressjs.com/4x/api.html#res.set",
+              "!doc": "Set header field to value, or pass an object to set multiple fields at once."       	  
+          },
+          get: {
+              "!type": "fn(field: string) -> string",
+              "!url": "http://expressjs.com/4x/api.html#res.get",
+              "!doc": "Get the case-insensitive response header field."       	                   	  
+          },
           send: {
             "!type": "fn(body?: ?)",
             "!url": "http://expressjs.com/4x/api.html#res.send",
             "!doc": "Send a response."
-          }
+          },
+          
         }
       },
       Route: {
