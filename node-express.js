@@ -218,7 +218,7 @@
                 "!doc": "The currently matched Route."                
             },
             cookies: {
-                    "!type": "+Object",
+                "!type": "+Object",
                 "!url": "http://expressjs.com/4x/api.html#req.cookies",
                 "!doc": "When the cookieParser() middleware is used, this object defaults to {}. Otherwise, it contains the cookies sent by the user-agent."                
             },
@@ -248,7 +248,7 @@
                 "!doc": "Check if the given lang are acceptable."                                       
             },
             acceptsEncodings: {
-                    "!type": "fn(type: string) -> bool",
+                "!type": "fn(type: string) -> bool",
                 "!url": "http://expressjs.com/4x/api.html#req.acceptsLanguages",
                 "!doc": "Check if the given encoding are acceptable."                                               
             },
@@ -340,13 +340,102 @@
                 "!url": "http://expressjs.com/4x/api.html#res.get",
                 "!doc": "Get the case-insensitive response header field."                                   
             },
-            send: {
-              "!type": "fn(body?: ?)",
-              "!url": "http://expressjs.com/4x/api.html#res.send",
-              "!doc": "Send a response."
+            cookie: {
+                "!type": "fn(name: string, field: ?, options?: +Object)",
+                "!url": "http://expressjs.com/4x/api.html#res.cookie",
+                "!doc": "Set cookie name to value, which may be a string or object converted to JSON. The path option defaults to \"/\"."                                   
             },
-            
-          }
+            clearCookie: {
+                "!type": "fn(name: string, options?: +Object)",
+                "!url": "http://expressjs.com/4x/api.html#res.clearCookie",
+                "!doc": "Clear cookie name. The path option defaults to "/"."                                               	
+            },
+            redirect: {
+                "!type": "fn(status?: number, url: string)",
+                "!url": "http://expressjs.com/4x/api.html#res.redirect",
+                "!doc": "Redirect to the given url with optional status code defaulting to 302 \"Found\". Express passes the specified URL string as-is to the browser in the Location header, without any validation or manipulation, except in case of back. Redirects can be relative to the root of the host name. Pathname relative redirects are also possible."                                               	           	
+            },
+            location: {
+                "!type": "fn(url: string)",
+                "!url": "http://expressjs.com/4x/api.html#res.location",
+                "!doc": "Set the location header. Express passes the specified URL string as-is to the browser in the Location header, without any validation or manipulation, except in case of back. Location can be relative to the root of the host name. Pathname relative locations are also possible."                                               	           	            	
+            },
+            send: {
+                "!type": "fn(body?: ?)",
+                "!url": "http://expressjs.com/4x/api.html#res.send",
+                "!doc": "Send a response."
+            },
+            json: {
+                "!type": "fn(body?: ?)",
+                "!url": "http://expressjs.com/4x/api.html#res.json",
+                "!doc": "Send a JSON response. This method is identical to res.send() when an object or array is passed. However, it may be used for explicit JSON conversion of non-objects, such as null, undefined, etc. (although these are technically not valid JSON)."
+            },
+            jsonp: {
+                "!type": "fn(body?: ?)",
+                "!url": "http://expressjs.com/4x/api.html#res.jsonp",
+                "!doc": "Send a JSON response with JSONP support. This method is identical to res.json(), except that it opts-in to JSONP callback support."
+            },
+            type: {
+                "!type": "fn(field: string)",
+                "!url": "http://expressjs.com/4x/api.html#res.type",
+                "!doc": "Sets the Content-Type to the mime lookup of type, or when "/" is present the Content-Type is simply set to this literal value."                                   
+            },
+            format: {
+                "!type": "fn(object: +Object)",
+                "!url": "http://expressjs.com/4x/api.html#res.format",
+                "!doc": "Performs content-negotiation on the Accept HTTP header on the request object, when present. It uses req.accepts() to select a handler for the request, based on the acceptable types ordered by their quality values. If the header is not specified, the first callback is invoked. When no match is found, the server responds with 406 \"Not Acceptable\", or invokes the default callback."                                   
+            },
+            attachment: {
+                "!type": "fn(filename?: string)",
+                "!url": "http://expressjs.com/4x/api.html#res.attachment",
+                "!doc": "Sets the Content-Disposition header field to \"attachment\". If a filename is given, then the Content-Type will be automatically set based on the extname via res.type(), and the Content-Disposition's \"filename=\" parameter will be set."           	
+            },
+            sendFile: {
+                "!type": "fn(path: string, options?: +Object, callback?: fn(err: Error))",
+                "!url": "http://expressjs.com/4x/api.html#res.sendFile",
+                "!doc" : "Transfer the file at the given path. The Content-Type response header field is automatically set based on the filename's extension. Unless the root option is set in the options object, path must be an absolute path of the file. Note: res.sendFile requires Express version to be at least 4.8.0"  	  
+            },
+            sendStatus: {
+                "!type": "fn(statusCode?: number)",
+                "!url": "http://expressjs.com/4x/api.html#res.sendStatus",
+                "!doc": "Set the response HTTP status code to statusCode and send its string representation as the response body."     	
+            },
+            download: {
+                "!type": "fn(path: string, filename?: string, callback?: fn(err: Error))",
+                "!url": "http://expressjs.com/4x/api.html#res.download",
+                "!doc" : "Transfer the file at path as an \"attachment\". Typically, browsers will prompt the user for download. The Content-Disposition \"filename=\" parameter (i.e. the one that will appear in the brower dialog) is set to path by default. However, you may provide an override filename. When an error has ocurred or transfer is complete the optional callback fn is invoked. This method uses res.sendFile() to transfer the file."           	
+            },
+            links: {
+                "!type": "fn(links: +Object)",
+                "!url": "http://expressjs.com/4x/api.html#res.links",
+                "!doc" : "Join the given links to populate the \"Link\" response header field."
+            },
+            locals: {
+                "!type": "+Object",
+                "!url": "http://expressjs.com/4x/api.html#res.locals",
+                "!doc": "Response local variables are scoped to the request, and therefore only available to the view(s) rendered during that request / response cycle (if any). Otherwise, this API is identical to app.locals."
+            },
+            render: {
+                "!type": "fn(view: string, locals?: +Object, callback: fn(err: Error, html: string))",
+                "!url": "http://expressjs.com/4x/api.html#res.render",
+                "!doc" : "Render a view with a callback responding with the rendered string. When an error occurs next(err) is invoked internally. When a callback is provided both the possible error and rendered string are passed, and no automated response is performed."  	             	
+            },
+            vary: {
+                "!type": "fn(field: string)",
+                "!url": "http://expressjs.com/4x/api.html#res.vary",
+                "!doc": "Adds the field to the Vary response header, if it is not there already."           	            	
+            },
+            end: {
+                "!type": "fn(data: ?, encoding: ?)",
+                "!url": "http://expressjs.com/4x/api.html#res.end",
+                "!doc": "Inherited from node's http.ServerResponse, ends the response process. The only recommended use is for quickly ending the response without any data. If you need to respond with data, use Express' response methods such as res.send(), res.json() etc.."           	            	           	
+            },
+            headersSent: {
+                "!type": "bool",
+                "!url": "http://expressjs.com/4x/api.html#res.headersSent",
+                "!doc": "Property indicating if HTTP headers has been sent for the response."          	
+            }         
+          },
         }
       },
       router: {
