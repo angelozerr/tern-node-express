@@ -17,6 +17,8 @@ Here a screenshot with completion for Response instance:
 
 ![CodeMirror & TernExpress Response](https://github.com/angelozerr/tern-node-express/wiki/images/TernExpressResponseWithCodeMirror.png)
 
+If you wish to use Eclipse as IDE, please read [here](https://github.com/angelozerr/tern.java/wiki/Tern-&-Node-Express-support)
+
 ## Installation
 
 tern-node-express works with the NodeJS [Tern Server][tern-server], and within a browser.
