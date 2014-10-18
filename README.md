@@ -12,12 +12,11 @@ Here a screenshot with completion for expression object :
  
 ![CodeMirror & TernExpress](https://github.com/angelozerr/tern-node-express/wiki/images/TernExpressWithCodeMirror.png)
 
-
 Here a screenshot with completion for Response instance:
 
 ![CodeMirror & TernExpress Response](https://github.com/angelozerr/tern-node-express/wiki/images/TernExpressResponseWithCodeMirror.png)
 
-If you wish to use Eclipse as IDE, please read [here](https://github.com/angelozerr/tern.java/wiki/Tern-&-Node-Express-support)
+If you wish to use Eclipse as IDE, see Eclipse support for [Node Express](https://github.com/angelozerr/tern.java/wiki/Tern-&-Node-Express-support).
 
 ## Installation
 
