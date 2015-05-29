@@ -2,8 +2,7 @@
 
 var fs = require("fs"), path = require("path"), tern = require("tern"), assert = require('assert');
 require("../node-express.js");
-// waiting for release of tern to use require("tern/plugin/node");
-require("./node_v7.js");
+require("tern/plugin/node");
 
 var projectDir = path.resolve(__dirname, "..");
 var resolve = function(pth) {

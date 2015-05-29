@@ -11,6 +11,7 @@ exports['test express#get'] = function() {
       "ch": 58
      },
      "isProperty": true,
+     "isObjectKey": false,
      "completions": [
       {
        "name": "get",
@@ -35,6 +36,7 @@ exports['test express#get(req, res#send)'] = function() {
        "ch": 93
       },
       "isProperty": true,
+      "isObjectKey": false,      
       "completions": [
        {
         "name": "send",
