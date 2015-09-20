@@ -76,7 +76,7 @@
   var defs = {
     "!name": "node-express",
     "!define": {
-      "!node": {
+      "!modules": {
         express: {
           "!type": "fn() -> application.Application",
           "!url": "http://expressjs.com/4x/api.html#express",

@@ -1,8 +1,8 @@
 "use strict";
 
 var fs = require("fs"), path = require("path"), tern = require("tern"), assert = require('assert');
-require("../node-express.js");
 require("tern/plugin/node");
+require("../node-express.js");
 
 var projectDir = path.resolve(__dirname, "..");
 var resolve = function(pth) {
@@ -56,7 +56,8 @@ exports.assertCompletion = function(text, expected, queryOptions, pluginOptions)
 			origins: queryOptions.origins,
 			caseInsensitive: true,
 			lineCharPositions: true,
-			expandWordForward: false
+			expandWordForward: false,
+			guess: false
 		}
 	}, function(err, resp) {
 		if (err)

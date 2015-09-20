@@ -5,57 +5,62 @@
     <title>Express Tern Demo</title>
     
     <!-- CodeMirror -->
-    <link rel="stylesheet" href="resources/codemirror/lib/codemirror.css">
-    <script src="resources/codemirror/lib/codemirror.js"></script>
-    <link rel="stylesheet" href="resources/codemirror/theme/eclipse.css">
-    <script src="resources/codemirror/addon/hint/show-hint.js"></script>
-    <script src="resources/codemirror/addon/edit/closetag.js"></script>
-    <script src="resources/codemirror/addon/edit/closebrackets.js"></script>    
-    <script src="resources/codemirror/addon/edit/matchbrackets.js"></script>
-    <script src="resources/codemirror/addon/selection/active-line.js"></script>
-    <script src="resources/codemirror/addon/runmode/runmode.js"></script>
+    <link rel="stylesheet" href="../node_modules/codemirror/lib/codemirror.css">
+    <script src="../node_modules/codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="../node_modules/codemirror/theme/eclipse.css">
+    <script src="../node_modules/codemirror/addon/hint/show-hint.js"></script>
+    <script src="../node_modules/codemirror/addon/edit/closetag.js"></script>
+    <script src="../node_modules/codemirror/addon/edit/closebrackets.js"></script>    
+    <script src="../node_modules/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../node_modules/codemirror/addon/selection/active-line.js"></script>
+    <script src="../node_modules/codemirror/addon/runmode/runmode.js"></script>
         
-    <script src="resources/codemirror/mode/javascript/javascript.js"></script>    
+    <script src="../node_modules/codemirror/mode/javascript/javascript.js"></script>    
 
   <!-- Tern JS -->
-  <script src="resources/ternjs/acorn/acorn.js"></script>
-  <script src="resources/ternjs/acorn/acorn_loose.js"></script>
-  <script src="resources/ternjs/acorn/util/walk.js"></script>
-  <script src="resources/ternjs/tern/lib/signal.js"></script>
-  <script src="resources/ternjs/tern/lib/tern.js"></script>
-  <script src="resources/ternjs/tern/lib/def.js"></script>
-  <script src="resources/ternjs/tern/lib/comment.js"></script>
-  <script src="resources/ternjs/tern/lib/infer.js"></script>
+  <script src="../node_modules/tern/node_modules/acorn/dist/acorn.js"></script>
+  <script src="../node_modules/tern/node_modules/acorn/dist/acorn_loose.js"></script>
+  <script src="../node_modules/tern/node_modules/acorn/dist/walk.js"></script>
+  <script src="../node_modules/tern/lib/signal.js"></script>
+  <script src="../node_modules/tern/lib/tern.js"></script>
+  <script src="../node_modules/tern/lib/def.js"></script>
+  <script src="../node_modules/tern/lib/comment.js"></script>
+  <script src="../node_modules/tern/lib/infer.js"></script>
   
-  <script src="resources/ternjs/tern/plugin/node.js"></script>
+  <!--  Tern node.js -->
+  <script src="../node_modules/tern/plugin/modules.js"></script>
+  <script src="../node_modules/tern/plugin/commonjs.js"></script>
+  <script src="../node_modules/tern/plugin/node_resolve.js"></script>  
+  <script src="../node_modules/tern/plugin/node.js"></script>
+
   <script src="../node-express.js"></script>
   
   <!-- Official CodeMirror Tern addon -->
-  <script src="resources/codemirror/addon/tern/tern.js"></script>   
+  <script src="../node_modules/codemirror/addon/tern/tern.js"></script>   
 
   <!-- Extension of CodeMirror Tern addon -->
-  <link rel="stylesheet" href="resources/codemirror-javascript/addon/hint/tern/tern-extension.css">
-  <script src="resources/codemirror-javascript/addon/hint/tern/tern-extension.js"></script>    
-  <script src="resources/codemirror-javascript/addon/hint/tern/defs/ecma5.json.js"></script>
+  <link rel="stylesheet" href="../node_modules/codemirror-javascript/addon/hint/tern/tern-extension.css">
+  <script src="../node_modules/codemirror-javascript/addon/hint/tern/tern-extension.js"></script>    
+  <script src="../node_modules/codemirror-javascript/demo/defs/ecma5.json.js"></script>
 
   <!-- CodeMirror Extension -->  
   
-  <link rel="stylesheet" href="resources/codemirror-extension/addon/hint/show-hint-eclipse.css">
-  <script src="resources/codemirror-extension/addon/hint/show-context-info.js"></script>
-  <link rel="stylesheet" href="resources/codemirror-extension/addon/hint/show-context-info.css">
+  <link rel="stylesheet" href="../node_modules/codemirror-extension/addon/hint/show-hint-eclipse.css">
+  <script src="../node_modules/codemirror-extension/addon/hint/show-context-info.js"></script>
+  <link rel="stylesheet" href="../node_modules/codemirror-extension/addon/hint/show-context-info.css">
   
-  <link rel="stylesheet" href="resources/codemirror-extension/addon/hint/templates-hint.css">
-  <script src="resources/codemirror-extension/addon/hint/templates-hint.js"></script>
+  <link rel="stylesheet" href="../node_modules/codemirror-extension/addon/hint/templates-hint.css">
+  <script src="../node_modules/codemirror-extension/addon/hint/templates-hint.js"></script>
   
   <!-- CodeMirror Javascript -->
-  <script src="resources/codemirror-javascript/addon/hint/javascript/javascript-templates.js"></script>
+  <script src="../node_modules/codemirror-javascript/addon/hint/javascript/javascript-templates.js"></script>
 
   <!-- Tern Hover -->
-  <link rel="stylesheet" href="resources/codemirror-extension/addon/hover/text-hover.css">
-  <script src="resources/codemirror-extension/addon/hover/text-hover.js"></script>
-  <script src="resources/codemirror-javascript/addon/hint/tern/tern-hover.js"></script>
+  <link rel="stylesheet" href="../node_modules/codemirror-extension/addon/hover/text-hover.css">
+  <script src="../node_modules/codemirror-extension/addon/hover/text-hover.js"></script>
+  <script src="../node_modules/codemirror-javascript/addon/hint/tern/tern-hover.js"></script>
     		          
-    <link rel="stylesheet" href="resources/codemirror/doc/docs.css">
+    <link rel="stylesheet" href="../node_modules/codemirror/doc/docs.css">
   </head>
   <body>
     
