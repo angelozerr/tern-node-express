@@ -57,7 +57,8 @@ exports.assertCompletion = function(text, expected, queryOptions, pluginOptions)
 			caseInsensitive: true,
 			lineCharPositions: true,
 			expandWordForward: false,
-			guess: false
+			guess: false,
+			docFormat: "full"
 		}
 	}, function(err, resp) {
 		if (err)

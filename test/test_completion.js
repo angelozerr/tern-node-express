@@ -49,7 +49,7 @@ exports['test express#get(req, res#send)'] = function() {
         "name": "sendDate",
         "type": "bool",
         "doc": "When true, the Date header will be automatically generated and sent in the response if it is not already present in the headers. Defaults to true.",
-        "url": "http://nodejs.org/api/http.html#http_response_senddate",
+        "url": "https://nodejs.org/api/http.html#http_response_senddate",
         "origin": "node"
        },
        {
