@@ -80,7 +80,7 @@
   function preLoadDef(data) {
     var cx = infer.cx(), localDefs = cx.localDefs;
     if (cx.definitions["node"] && data["!define"] && data["!name"]== "node-express") {
-      // set yui3 as local defs for AlloyUI tern plugin
+      // copy node definition to localDefs to support "!proto" : "http.IncomingMessage.prototype", for request.Request
       for (var def in cx.definitions["node"]) {
         cx.localDefs[def] = cx.definitions["node"][def];
       }
